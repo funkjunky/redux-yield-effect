@@ -7,7 +7,7 @@
     "build": "npx babel src -d lib --ignore *.spec.js",
     "build:watch": "npm run build -- -w",
     "lint": "eslint src/",
-    "test": "jest",
+    "test": "jest"
   },
   "author": "Sophie McCarrell <sophie.mccarrell@gmail.com>",
   "license": "ISC",
