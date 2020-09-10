@@ -15,18 +15,19 @@ export const getRyeHelpers = ({ dispatch, activeGenerators, effectProcessors }) 
       if (prevYield.done) return Promise.resolve(prevYield.value);
 
       // TODO: need to identify effects better, than { type } existing
+      // TODO: im not sure all of the awaits are necessary
       if (!prevYield.value?.type) {
-        return recursivelyProcessGenerator(generator, generator.next(prevYield.value));
+        return recursivelyProcessGenerator(generator, await generator.next(prevYield.value));
       } else {
-        return processEffect(generator, prevYield.value);
+        return await processEffect(generator, prevYield.value);
       }
     },
 
     processEffect: async (generator, effect) => {
       const effectPromise = effectProcessors[effect.type](effect, { dispatch, effectGeneratorProcessor });
-      return effectPromise.then(
-        result => recursivelyProcessGenerator(generator, generator.next(result)),
-        error => recursivelyProcessGenerator(generator, generator.throw(error)),
+      return await effectPromise.then(
+        async result => recursivelyProcessGenerator(generator, await generator.next(result)),
+        async error => recursivelyProcessGenerator(generator, await generator.throw(error)),
       );
     },
   };
