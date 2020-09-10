@@ -1,3 +1,16 @@
+<a name="1.2.3"></a>
+# [1.2.3] (2020-09-10)
+### Features
+
+* Things work again!
+* put no longer restricts on being a plainobject
+* async generators are supported!
+* generators now return an object { endGeneratorAction, result }
+** endGeneratorAction - ends the generator early
+** result - a promise for the result of the generator
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/wizardzloy/redux-yield-effect/compare/v1.0.3...v1.1.0) (2017-12-16)
 
